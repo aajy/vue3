@@ -1,0 +1,85 @@
+@import url(./variabled.scss);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+textarea {
+  resize: none;
+}
+a,p {
+  text-decoration: none;
+  margin:0;
+}
+
+.page {
+  display: flex;
+  width: 100%;
+  .pageView {
+    width: 100%;
+    padding: 40px 60px;
+  } 
+}
+.pageTitle {
+  p {
+    font-size: 10px;
+    color:#eee;
+  }
+}
+.subTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  p {
+    line-height: 38px;
+  }
+}
+.div-flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+  color:#111;
+}
+.tableForm {
+  width:100%;
+  margin: 60px 0 30px;
+  table {
+    text-align: center;
+    color:#eee;
+  }
+}
+.searchForm {
+  margin-bottom: 20px;
+  padding:10px;
+  label {
+    text-align: center;
+  }
+  // .row {
+  //   border:1px solid #ddd;
+  //   align-items: center;
+  // }
+  .col {
+    word-break: keep-all;
+  }
+}
+.searchButton {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  >button {
+    margin-right: 5px;
+  }
+}
+
+.actionButton {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  >button {
+    margin-right: 5px;
+  }
+}
+.pagination {
+  justify-content: center;
+}
