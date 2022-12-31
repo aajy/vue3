@@ -8,11 +8,11 @@
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li v-for="(item, index) in sideMenuList" :key="index" class="nav-item" :class="{active: active(item)}">
+      <li v-for="(item, index) in props.sideMenuList" :key="index" class="nav-item" :class="{active: activeMenu(item)}">
         <svg class="bi pe-none m-2" width="18" height="18">
           <use xlink:href="#table"/>
         </svg>
-        <router-link :to="{ name: item.pathName }" class="nav-link"> {{ item.name }} </router-link>
+        <router-link :to="{ name: item.pathname }" class="nav-link"> {{ item.name }} </router-link>
       </li>
     </ul>
     <div class="flex-shrink-0 dropdown">
@@ -33,8 +33,8 @@ import { defineProps } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-
-const presentPageInfo = defineProps({
+let presentPath = ''
+const props = defineProps({
   sideMenuList: {
     type: Array
   },
@@ -43,9 +43,13 @@ const presentPageInfo = defineProps({
     default: '페이지 제목'
   }
 })
-const active = function (item) {
-  console.log('item', item)
-  console.log('route', route.name)
+const activeMenu = function (item) {
+  presentPath = item.pathname
+  if (route.name === presentPath) {
+    return true
+  } else {
+    return false
+  }
 }
 </script>
 <style scoped lang="scss">

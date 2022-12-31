@@ -16,9 +16,20 @@ a,p {
   width: 100%;
   .pageView {
     width: 100%;
+    overflow: auto;
     padding: 40px 60px;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #ddd;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #666; 
+    }
   } 
 }
+
 .pageTitle {
   p {
     font-size: 10px;

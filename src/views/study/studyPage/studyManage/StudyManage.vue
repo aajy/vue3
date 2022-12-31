@@ -120,6 +120,7 @@
           {{ index}}
         </template>
       </v-data-table>-->
+      <!-- TODO:: 검색어의 아래 searchForm이 검색눌렀을 때만 업데이트되도록 수정하기. -->
       <div class="tableTag" width="100%">
         <div v-if="isHandleSubmit" :style="style1">{{ `검색어 - 제목: ${searchForm.title} 카테고리: ${searchForm.category} 라디오: ${searchForm.radioValue} 체크박스: ${searchForm.checkedList}`}}</div>
         <div class="tableForm">
