@@ -7,7 +7,7 @@
       class="px-3 py-2 text-bg-dark"
       style="align-items: center"
     >
-      <img src="@/assets/logo_login.png" />
+      <img src="@/assets/logo.png" />
       <b-card-text>
         Login with Google
       </b-card-text>
