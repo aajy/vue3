@@ -77,6 +77,7 @@ const routes = [
     meta: { unauthorized: true },
     component: () => import('@/views/study/guidebook/StudyGuidebookManageHandler.vue')
   }
+  /* [404] { path: '/*', component: pageNotFoundPage },**/
 ]
 
 const router = createRouter({

@@ -2,7 +2,7 @@
   <div class="page">
     <SideMenu presentCategory="학습 자료 관리" :sideMenuList="sideMenuList"></SideMenu>
     <div class="pageView text-white text-bg-dark">
-      <TitleContents>
+      <div class="titleContentsTag">
           <div class="pageTitle">
             <div>
               <h3>{{ pageTitle }}</h3>
@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-        </TitleContents>
+        </div>
     </div>
   </div>
 </template>

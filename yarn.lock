@@ -7853,6 +7853,13 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
+vue-native-websocket-vue3@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/vue-native-websocket-vue3/-/vue-native-websocket-vue3-3.1.6.tgz#42f26c0985517007a0aa74baf523170249937dfa"
+  integrity sha512-yl5rWSds/35q97QUNQSwL1fIDwVQoH0iV8K8pSaa5P2K/KUuQwha+/1466An/D/RrCNdwmdCVmFzfIoMl0datw==
+  dependencies:
+    file-entry-cache "^6.0.1"
+
 vue-router@^4.0.3:
   version "4.1.6"
   resolved "https://registry.npmmirror.com/vue-router/-/vue-router-4.1.6.tgz#b70303737e12b4814578d21d68d21618469375a1"

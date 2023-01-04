@@ -43,6 +43,10 @@ const props = defineProps({
     default: '페이지 제목'
   }
 })
+// const props = defineProps<{
+//   sideMenuList: Array<string>,
+//   presentCategory: string
+// }>()
 const activeMenu = function (item) {
   presentPath = item.pathname
   if (route.name === presentPath) {

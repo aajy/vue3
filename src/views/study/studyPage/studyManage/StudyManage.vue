@@ -134,7 +134,7 @@
               </tr>
             </thead>
             <tbody v-if="isHandleSubmit">
-              <tr v-for="(item, index) in list" :key="index">
+              <tr v-for="(item, index) in jsonList" :key="index">
                 <td> {{ index + 1 }}</td>
                 <td> {{ item.title }}</td>
                 <td> {{ item.category }}</td>
@@ -173,6 +173,7 @@
 <script setup lang="ts">
 import SideMenu from '@/components/common/SideMenu.vue'
 import { computed, reactive, ref } from 'vue'
+import type { Ref } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -195,7 +196,7 @@ interface listType {// 인터페이스 만들기
   title : string
   category: string
   radioValue: string
-  checkedList: Array
+  checkedList: string[]
 }
 const categoryList = [
   {
@@ -260,7 +261,7 @@ const onAllChecked = function () {
     searchForm.value.checkedList = Object.assign(searchForm.value.checkedList, getInitialFormData().checkedList)
   }
 }
-const isHandleSubmit:boolean = ref(false)
+const isHandleSubmit = ref(false)
 const handleSubmit = () => {
   if (!searchForm.value.title) {
     alert('제목을 입력해주세요.')
@@ -268,11 +269,31 @@ const handleSubmit = () => {
   }
   isHandleSubmit.value = true
 }
-const jsonList:object = ref(store.getters.studyListJson)
-console.log('store', jsonList)
+
+// ref 유무 차이
+// console.log('store jsonList', jsonList.value)
+
+const list1 = // TODO :: proxy 값 사용하는 방법? proxy는 만들어진 순간 가공이 불가?
+  // jsonList.value = {
+  //   set (target: any, property: any, value: any) {
+  //     target[property] = value
+  //     return value.filter((item:any) => item.title === searchForm.value.title)
+  //   }
+  // }
+  // computed안에서 jsonList.filter로 바로
+  computed<object>(() => {
+    const jsonList = store.getters.studyListJson
+    console.log('computed json', jsonList)
+    return jsonList.filter((item:any) => item.title === searchForm.value.title)
+  })
+const jsonList = ref(store.getters.studyListJson)
+console.log('conputed2', jsonList)
+console.log('searchForm value', searchForm.value)
 const list = computed(() => {
   return jsonList.value.filter((item) => item.title === searchForm.value.title)
 })
+console.log('list', list)
+
 const resetForm = () => {
   Object.assign(searchForm.value, getInitialFormData())
 }
