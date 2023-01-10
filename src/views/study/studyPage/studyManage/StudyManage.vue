@@ -286,11 +286,12 @@ const list1 = // TODO :: proxy 값 사용하는 방법? proxy는 만들어진 �
     console.log('computed json', jsonList)
     return jsonList.filter((item:any) => item.title === searchForm.value.title)
   })
-const jsonList = ref(store.getters.studyListJson)
+const jsonList = store.getters.studyListJson
 console.log('conputed2', jsonList)
-console.log('searchForm value', searchForm.value)
-const list = computed(() => {
-  return jsonList.value.filter((item) => item.title === searchForm.value.title)
+console.log('searchForm value', searchForm.value.title)
+const list = computed<object>({
+  get: () => jsonList,
+  set: (jsonList) => jsonList.filter((item: any) => item.title === searchForm.value.title)
 })
 console.log('list', list)
 

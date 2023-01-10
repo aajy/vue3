@@ -10,6 +10,7 @@
          </div>
        </div>
      </div>
+     <!-- 여기선 유튜브 플리를 가져오는데 필요한 데이터를 저장하는 곳으로, tabTitme이랑 contentsTitle도 여기서 등록 -->
      <div class="mb-3 row">
        <label for="inputPassword" class="col-sm-2 col-form-label">title</label>
        <div class="col-sm-10 mb-1">
@@ -23,6 +24,7 @@
      <div class="actionButton">
        <button type="button" class="btn btn-outline-primary" click="()=>" >취소</button>
        <button type="button" class="btn btn-outline-primary">등록</button>
+       <!-- 유투브 검색어 목록 등록/수정 검색어, 날짜, 로 이뤄진 페이지 -->
      </div>
    </div>
  </div>

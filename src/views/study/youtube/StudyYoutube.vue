@@ -15,11 +15,25 @@
           </div>
         </div>
       </div>
+      <div>
+        <StudyYoutubeSearchBar
+          @on-keyword-enter="onKeywordEnter"
+        ></StudyYoutubeSearchBar>
+        <StudyYoutubeContents
+          :videoList="videoList"
+          @on-select-video="onSelectVideo"
+        >
+        </StudyYoutubeContents>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import SideMenu from '@/components/common/SideMenu.vue'
+import StudyYoutubeSearchBar from '@/views/study/youtube/StudyYoutubeSearchBar.vue'
+import StudyYoutubeContents from '@/views/study/youtube/StudyYoutubeContents.vue'
 const pageTitle = '유튜브 관리'
 const sideMenuList = [
   {
@@ -35,6 +49,17 @@ const sideMenuList = [
     pathname: 'studyGuidebook'
   }
 ]
+const videoList = ref<object>([])
+function onKeywordEnter (newVideoList: object[]) {
+  // console.log('부모에서찍음', videoList)
+  videoList.value = newVideoList
+  console.log(videoList)
+}
+const video = ref<string>({})
+function onSelectVideo (emitVideo: string) {
+  console.log('emitVideo', emitVideo)
+  video.value = emitVideo
+}
 </script>
 <style scoped lang="scss">
 </style>
