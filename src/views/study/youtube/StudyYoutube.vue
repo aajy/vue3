@@ -18,10 +18,11 @@
       <div>
         <StudyYoutubeSearchBar
           @on-keyword-enter="onKeywordEnter"
+          @get-keyword="getKeyword"
         ></StudyYoutubeSearchBar>
         <StudyYoutubeContents
+          :keyword="keyword"
           :videoList="videoList"
-          @on-select-video="onSelectVideo"
         >
         </StudyYoutubeContents>
       </div>
@@ -30,7 +31,6 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Ref } from 'vue'
 import SideMenu from '@/components/common/SideMenu.vue'
 import StudyYoutubeSearchBar from '@/views/study/youtube/StudyYoutubeSearchBar.vue'
 import StudyYoutubeContents from '@/views/study/youtube/StudyYoutubeContents.vue'
@@ -50,15 +50,15 @@ const sideMenuList = [
   }
 ]
 const videoList = ref<object>([])
+// studyYoutubeSearchBar에서 emit으로 넘겨준 검색 결과값
 function onKeywordEnter (newVideoList: object[]) {
-  // console.log('부모에서찍음', videoList)
+  // console.log('newlist', newVideoList)
   videoList.value = newVideoList
-  console.log(videoList)
 }
-const video = ref<string>({})
-function onSelectVideo (emitVideo: string) {
-  console.log('emitVideo', emitVideo)
-  video.value = emitVideo
+const keyword = ref<string>()
+function getKeyword (newKeyword: string) {
+  // console.log('newkeyword', newKeyword)
+  keyword.value = newKeyword
 }
 </script>
 <style scoped lang="scss">
