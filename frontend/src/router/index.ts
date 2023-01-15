@@ -14,6 +14,12 @@ const routes = [
     component: () => import('@/views/LoginView.vue')
   },
   {
+    path: '/signin',
+    name: 'SigninView',
+    meta: { unauthorized: true },
+    component: () => import('@/views/SigninView.vue')
+  },
+  {
     path: '/dashboard1',
     name: 'dashBoard1',
     meta: { unauthorized: true },

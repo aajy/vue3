@@ -89,13 +89,23 @@
                 관리자 관리
               </a>
             </li>
+            <li>
+              <a href="#" class="nav-link text-white" @click="emit('logout')">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                로그아웃
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </header>
 </template>
+<script setup lang='ts'>
+import { defineEmits } from 'vue'
 
+const emit = defineEmits<{(e : 'modal-hide', id: boolean): void}>()
+</script>
 <style lang="scss">
 #header {
   z-index: 10;

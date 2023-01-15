@@ -5,30 +5,18 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const jwtKey = 'abc1234567'
-const members = [
-  {
-    id: 3,
-    name: '도서관',
-    loginId: 'lib',
-    loginPw: 'africa'
-  },
-  {
-    id: 4,
-    name: '홍길동',
-    loginId: 'a',
-    loginPw: '1'
-  },
-]
+const database = require("./loginDatabase")
+
 // parse application/json
 app.use(bodyParser.json()).use(cookieParser())
 
 app.get('/api/account', (req, res) => {
-  console.log('cookie', req.cookies)
   if (req.cookies && req.cookies.token) {
     jwt.verify(req.cookies.token, jwtKey, (err, decoded) => {
       if(err) {
         return res.status(401).json({ error: '토큰 에러'})
       }
+
       res.send(decoded)
     })
   } else { // 쿠키가 없을 때
@@ -36,15 +24,15 @@ app.get('/api/account', (req, res) => {
   }
 })
 
-app.post('/api/account', (req, res) => {
+app.post('/api/account', async (req, res) => {
+  const result = await database.run('SELECT * FROM users')
   const loginId = req.body.loginId
   const loginPw = req.body.loginPw
 
-  const member = members.find(m => m.loginId === loginId && m.loginPw === loginPw)
-  
+  const member = result.find(m => m.userId === loginId && m.password === loginPw)
   if(member) {
     const token = jwt.sign({
-      id: member.id,
+      id: member.userId,
       name: member.name
     }, jwtKey, {
       expiresIn: "15m",

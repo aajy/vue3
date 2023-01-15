@@ -1,25 +1,30 @@
 <template>
   <div class="app">
     <div v-if="state.account.id">
-      <button @click="logout">로그아웃</button>
       <!-- `안녕하세요, ${state.account.name}님!` 쿠키팝업 만들어보기-->
       <b-container class="text-bg-dark">
-        <Header></Header>
+        <Header @logout="logout"></Header>
         <router-view class="routerView"/>
         <Footer></Footer>
       </b-container>
     </div>
     <div v-else>
-      <label for="loginId">
-        <span>아이디</span>
-        <input type="text" id="loginId" v-model="state.form.loginId">
-      </label>
-      <label for="loginPw">
-        <span>패스워드</span>
-        <input type="password" id="loginPw" v-model="state.form.loginPw">
-      </label>
-      <hr/>
-      <button @click="submit">로그인</button>
+      <div v-if="$route.path === '/signin'">
+        <router-view/>
+      </div>
+      <div v-else>
+        <label for="loginId">
+          <span>아이디</span>
+          <input type="text" id="loginId" v-model="state.form.loginId">
+        </label>
+        <label for="loginPw">
+          <span>패스워드</span>
+          <input type="password" id="loginPw" v-model="state.form.loginPw">
+        </label>
+        <hr/>
+        <button @click="login">로그인</button>
+        <router-link to="/signin"><button>회원가입</button></router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +54,7 @@ export default defineComponent({
         loginPw: ''
       }
     })
-    const submit = (): void => {
+    const login = (): void => {
       const args = { // arguments
         loginId: state.form.loginId,
         loginPw: state.form.loginPw
@@ -61,15 +66,17 @@ export default defineComponent({
     }
     const logout = ():void => {
       axios.delete('/api/account').then((res) => {
-        alert('로그아웃 하였습니다.')
-        state.account.id = null
-        state.account.name = ''
+        const isLogout = confirm('로그아웃 하시겠습니까?')
+        if (isLogout) {
+          state.account.id = null
+          state.account.name = ''
+        }
       })
     }
-    axios.get('/api/account').then((res) => {
-      state.account = res.data
-    })
-    return { state, submit, logout }
+    // axios.get('/api/account').then((res) => {
+    //   state.account = res.data
+    // })
+    return { state, login, logout }
   }
 })
 
