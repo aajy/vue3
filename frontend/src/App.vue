@@ -9,7 +9,7 @@
       </b-container>
     </div>
     <div v-else>
-      <div v-if="$route.path === '/signin'">
+      <div v-if="$route.path === '/signup'">
         <router-view @signin="signin"/>
       </div>
       <div v-else>
@@ -29,7 +29,7 @@
               <hr/>
             </div>
             <button @click="login" :disabled="state.isLoginupDisabled" :class="state.isLoginupDisabled ? 'btn btn-disabled' : 'btn btn-primary'">sign in</button>
-            <router-link to="/signup"><button class="btn btn-success">sign up</button></router-link>
+            <router-link to="/signup" class="signupRouter">Now here? <span class="signup">sign up</span></router-link>
           </div>
             <!--Waves Container-->
           <div>
@@ -59,6 +59,7 @@ import axios from 'axios'
 import { defineComponent, reactive, watch, ref } from 'vue'
 import Header from '@/components/common/HeaderComponent.vue'
 import Footer from '@/components/common/FooterComponent.vue'
+import router from './router'
 // import LeftNavigator from './componen1ts/common/leftNavigator.vue'
 
 export default defineComponent({
@@ -82,7 +83,7 @@ export default defineComponent({
     const state = reactive(InitialState())
     const reset = () => { Object.assign(state, reactive(InitialState())) }
     const signin = ():void => {
-      reset()
+      router.go(-1) // 페이지가 바뀌고 돌아오면 watch가 작동을 안해서 강제 새로고침함
     }
     const login = (): void => {
       const args = { // arguments

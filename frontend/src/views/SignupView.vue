@@ -51,7 +51,7 @@ import { ref, watch, defineEmits } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 
-const emit = defineEmits(['modal-hide', 'logout'])
+const emit = defineEmits(['modal-hide', 'signin'])
 
 const router = useRouter()
 const state = ref({

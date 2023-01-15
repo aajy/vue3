@@ -78,11 +78,11 @@
   >button {
     margin-bottom: 10px;
   }
-  .signinRouter {
+  .signinRouter, .signupRouter {
     font-size: 12px;
     font-weight: 200;
     color: #fff;
-    .signin{
+    .signin, .signup {
       color: #5ccbff;
     }
   }
