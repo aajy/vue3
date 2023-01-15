@@ -90,7 +90,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white" @click="emit('logout')">
+              <a href="#" class="nav-link text-white" @click="logout">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
                 로그아웃
               </a>
@@ -103,8 +103,19 @@
 </template>
 <script setup lang='ts'>
 import { defineEmits } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
-const emit = defineEmits<{(e : 'modal-hide', id: boolean): void}>()
+const router = useRouter() // 로그아웃하고 오면  watch가 작동을 안해서 강제 새로고침함
+const emit = defineEmits(['modal-hide', 'logout'])
+const logout = ():void => {
+  axios.delete('/api/account').then((res) => {
+    const isLogout = confirm('로그아웃 하시겠습니까?')
+    if (isLogout) {
+      router.go(0)
+    }
+  })
+}
 </script>
 <style lang="scss">
 #header {

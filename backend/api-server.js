@@ -37,7 +37,7 @@ app.post('/api/account', async (req, res) => {
       id: user.userId,
       name: user.name
     }, jwtKey, {
-      expiresIn: "15m",
+      expiresIn: "3h",
       issuer: 'africalib'
     })
     res.cookie('token', token);
