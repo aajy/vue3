@@ -61,6 +61,11 @@ app.delete('/api/account', (req, res) => {
 })
 // 회원가입
 
+app.get('/api/users', async (req, res) => {
+  const result = await database.run('SELECT * FROM users')
+  res.send(result)
+})
+
 app.post('/api/users', async (req, res) => {
   await database.run(`INSERT INTO users (userId, password, name) VALUES('${req.body.userInfo.signId}', '${req.body.userInfo.signPw}', '${req.body.userInfo.signName}')`)
   const result = await database.run('SELECT * FROM users')

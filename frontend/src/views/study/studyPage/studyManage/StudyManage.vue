@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <SideMenu presentCategory="학습 자료 관리" :sideMenuList="sideMenuList"></SideMenu>
-    <div  class="pageView text-bg-dark">
+    <div class="pageView text-bg-dark">
       <div class="titleContentsTag">
         <div class="pageTitle">
           <div>

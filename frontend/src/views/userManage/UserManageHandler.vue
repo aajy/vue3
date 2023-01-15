@@ -1,12 +1,12 @@
 <template>
    <div class="page">
-     <SideMenu presentCategory="회원 관리" :sideMenuList="sideMenuList"></SideMenu>
+     <SideMenu presentCategory="학습 자료 관리" :sideMenuList="sideMenuList"></SideMenu>
     <div  class="pageView text-white text-bg-dark">
       <div class="pageTitle">
        <div>
-         <h3>{{`회원 관리 ${route.query.action}`}}</h3>
+         <h3>{{`스터디 페이지 ${route.query.action}`}}</h3>
          <div class="subTitle">
-           <p>회원을 관리할 수 있습니다.</p>
+           <p>스터디 페이지에서 노출하는 배너와 유튜브, 가이드북을 관리할 수 있습니다.</p>
           </div>
         </div>
       </div>

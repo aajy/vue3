@@ -37,7 +37,26 @@ const routes = [
     meta: { unauthorized: true },
     component: () => import('@/views/dashBoard/DashBoard3.vue')
   },
-
+  // userManage
+  {
+    path: '/userManage',
+    name: 'userManage',
+    meta: { unauthorized: true },
+    component: () => import('@/views/userManage/UserManage.vue')
+  },
+  {
+    path: '/userManage/regist',
+    name: 'userManageRegist',
+    meta: { unauthorized: true },
+    props: true,
+    component: () => import('@/views/userManage/UserManageHandler.vue')
+  },
+  {
+    path: '/userManage/modify',
+    name: 'userManageModify',
+    meta: { unauthorized: true },
+    component: () => import('@/views/userManage/UserManageHandler.vue')
+  },
   //  study.ts
   {
     path: '/study/study',

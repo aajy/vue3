@@ -39,7 +39,7 @@
             <li>
               <a href="#" class="nav-link text-white">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
-                랜딩 관리
+                <router-link :to="{ name: 'userManage' }" class="dropdown-item">회원 관리</router-link>
               </a>
             </li>
             <li>
@@ -90,10 +90,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white" @click="logout">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-                로그아웃
-              </a>
+              <button @click="logout" class="btn btn-warning">로그아웃</button>
             </li>
           </ul>
         </div>
