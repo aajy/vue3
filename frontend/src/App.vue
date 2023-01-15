@@ -73,9 +73,9 @@ export default defineComponent({
         }
       })
     }
-    // axios.get('/api/account').then((res) => {
-    //   state.account = res.data
-    // })
+    axios.get('/api/account').then((res) => {
+      state.account = res.data
+    })
     return { state, login, logout }
   }
 })

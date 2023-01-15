@@ -66,17 +66,18 @@ const isSignupDisabled = ref(true)
 
 watch(state.value.form, ():void => {
   if (state.value.form.signId.length && state.value.form.signPw.length && state.value.form.signName.length) {
-    console.log('로그인 가능')
+    console.log('회원가입 가능')
     isSignupDisabled.value = false
   } else {
-    console.log('로그인 불가')
+    console.log('회원가입 불가')
     isSignupDisabled.value = true
   }
 })
 const signup = (form: object) => {
-  axios.post('/api/users', { user: form })
+  axios.post('/api/users', { userInfo: form })
     .then((res) => {
-      console.log('회원가입 성공', res)
+      console.log('회원가입 성공', form)
+      alert(`${form.signName}님 회원가입 되었습니다.`)
       router.push({ name: 'HomeView' })
     })
     .catch((err) => {

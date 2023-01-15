@@ -9,8 +9,10 @@ const database = require("./loginDatabase")
 
 // parse application/json
 app.use(bodyParser.json()).use(cookieParser())
-
-app.get('/api/account', (req, res) => {
+// 로그인
+let users = []
+app.get('/api/account', async (req, res) => {
+  users = await database.run('SELECT * FROM users')
   if (req.cookies && req.cookies.token) {
     jwt.verify(req.cookies.token, jwtKey, (err, decoded) => {
       if(err) {
@@ -25,15 +27,15 @@ app.get('/api/account', (req, res) => {
 })
 
 app.post('/api/account', async (req, res) => {
-  const result = await database.run('SELECT * FROM users')
   const loginId = req.body.loginId
   const loginPw = req.body.loginPw
 
-  const member = result.find(m => m.userId === loginId && m.password === loginPw)
-  if(member) {
+  const user = users.find(u => u.userId === loginId && u.password === loginPw)
+  console.log(user)
+  if(user) {
     const token = jwt.sign({
-      id: member.userId,
-      name: member.name
+      id: user.userId,
+      name: user.name
     }, jwtKey, {
       expiresIn: "15m",
       issuer: 'africalib'
@@ -56,6 +58,13 @@ app.delete('/api/account', (req, res) => {
   }
 
   res.sendStatus(200)
+})
+// 회원가입
+
+app.post('/api/users', async (req, res) => {
+  await database.run(`INSERT INTO users (userId, password, name) VALUES('${req.body.userInfo.signId}', '${req.body.userInfo.signPw}', '${req.body.userInfo.signName}')`)
+  const result = await database.run('SELECT * FROM users')
+  res.send(result)
 })
 
 app.listen(port, () => {
